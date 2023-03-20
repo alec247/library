@@ -9,6 +9,25 @@
         <script src="index.js" defer></script>
     </head>
     <body>
-        <h1 id="test">Hello</h1>
+        <!-- TODO:
+        1. DONE Loop through myLibrary and display each obj (book) in its own div/card
+        2. DONE Create New Book button that displays form for user input on new book
+        3. Validate user inputs for correct type
+        4. Take validated input and create new Book object, push to myLibrary
+        5. Update myLibrary on form submission and display updated library -->
+        <h1>Library</h1>
+        <div class="container"></div>
+        <button id="new-book-button">Add a new book</button>
+        <form id="new-book-form">
+            <label for="title" hidden>Title</label>
+            <input type="text" id="title" placeholder="" hidden />
+            <label for="author" hidden>Author</label>
+            <input type="text" id="author" placeholder="" hidden />
+            <label for="pages" hidden>Number of Pages</label>
+            <input type="number" id="pages" placeholder="" hidden />
+            <label for="isRead" hidden>Have you read this book?</label>
+            <input type="checkbox" id="isRead" hidden />
+            <button type="" id="form-submit" hidden>Add book</button>
+        </form>
     </body>
 </html>

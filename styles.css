@@ -1,8 +1,43 @@
 * {
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
-h1 {
-    color: red;
+body {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* TODO: Make cards responsive */
+.container {
+    border: solid black 1px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 75%));
+    justify-self: center;
+    gap: 2rem;
+    padding: 2rem;
+    height: auto;
+    width: clamp(25%, 65%, 75%);
+}
+
+.card {
+    border: solid black 1px;
+    display: grid;
+    height: auto;
+    padding: 1rem;
+}
+
+#new-book-button {
+    padding: 0.5rem;
+    height: auto;
+    width: 10%;
+    justify-self: center;
+}
+
+#new-book-form {
+    display: grid;
+    gap: 1rem;
+    text-align: center;
 }
