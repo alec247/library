@@ -1,4 +1,5 @@
 const myLibrary = [];
+let displayBooks = function () {};
 
 // Constructor for books
 function Book(title, author, pages, read) {
@@ -42,26 +43,43 @@ function translateBool(bool) {
     return "No";
 }
 
+function removeBook(event) {
+    const index = event.target.dataset.id;
+
+    myLibrary.splice(index, index + 1);
+
+    displayBooks(myLibrary);
+}
+
+function addRemoveBtnFunction() {
+    const buttons = document.querySelectorAll(".remove-book");
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", removeBook);
+    });
+}
+
 // Takes myLibrary and iterates through, adds books to cards in display
-function displayBooks(library) {
+displayBooks = (library) => {
     const container = document.querySelector(".container");
 
     clearDisplay();
 
-    library.forEach((book) => {
+    library.forEach((book, index) => {
         const card = document.createElement("div");
         card.classList.add("card");
 
         card.innerHTML = `<h2>${book.title}</h2>
             <h4>By: ${book.author}</h4>
             <p>${book.pages} pages</p>
-            <p>Have I read it: ${translateBool(book.read)}</p>`;
+            <p>Have I read it: ${translateBool(book.read)}</p>
+            <button class="remove-book" data-id=${index}>Remove from Library</button>`;
 
         container.appendChild(card);
     });
-}
 
-displayBooks(myLibrary);
+    addRemoveBtnFunction();
+};
 
 function getForm() {
     return document.getElementById("new-book-form");
