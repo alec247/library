@@ -30,7 +30,6 @@ function translateBool(bool) {
 function displayBooks(library) {
     const container = document.querySelector(".container");
 
-    // TODO: clear container on function call
     clearDisplay();
 
     library.forEach((book) => {
@@ -69,7 +68,11 @@ function toggleForm(event) {
     btn.addEventListener("click", toggleForm);
 })();
 
-function clearForm() {}
+function clearForm() {
+    const form = getForm();
+
+    form.reset();
+}
 
 function getFormValue(attr) {
     const element = document.getElementById(attr);
@@ -91,6 +94,7 @@ function submitForm(event) {
     addBookToLibrary(title, author, pages, isRead);
     displayBooks(myLibrary);
 
+    clearForm();
     event.preventDefault();
 }
 
