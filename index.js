@@ -43,6 +43,22 @@ function translateBool(bool) {
     return "No";
 }
 
+function toggleRead(event) {
+    const index = event.target.dataset.id;
+
+    myLibrary[index].read = !myLibrary[index].read;
+
+    displayBooks(myLibrary);
+}
+
+function addToggleReadFunction() {
+    const buttons = document.querySelectorAll(".toggle-read");
+
+    buttons.forEach((btn) => {
+        btn.addEventListener("click", toggleRead);
+    });
+}
+
 function removeBook(event) {
     const index = event.target.dataset.id;
 
@@ -73,11 +89,13 @@ displayBooks = (library) => {
             <h4>By: ${book.author}</h4>
             <p>${book.pages} pages</p>
             <p>Have I read it: ${translateBool(book.read)}</p>
+            <button class="toggle-read" data-id=${index}>Toggle Read Status</button>
             <button class="remove-book" data-id=${index}>Remove from Library</button>`;
 
         container.appendChild(card);
     });
 
+    addToggleReadFunction();
     addRemoveBtnFunction();
 };
 
