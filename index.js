@@ -8,11 +8,27 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// Creates book object and adds to array
-function addBookToLibrary(title, author, pages, read) {
-    const newBook = new Book(title, author, pages, read);
+function bookExists(newTitle) {
+    let value = false;
 
-    // TODO: Return error if book with same title already exists
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (myLibrary[i].title === newTitle) {
+            value = true;
+            break;
+        }
+    }
+
+    return value;
+}
+
+// Creates book object and adds to array if unique
+function addBookToLibrary(title, author, pages, read) {
+    if (bookExists(title)) {
+        alert("This book is already in the library!");
+        return;
+    }
+
+    const newBook = new Book(title, author, pages, read);
 
     myLibrary.push(newBook);
 }
@@ -36,9 +52,9 @@ function displayBooks(library) {
         const card = document.createElement("div");
         card.classList.add("card");
 
-        card.innerHTML = `<h2>${book.title}</h2><br>
-            <h4>By: ${book.author}</h4><br>
-            <p>${book.pages} pages</p><br>
+        card.innerHTML = `<h2>${book.title}</h2>
+            <h4>By: ${book.author}</h4>
+            <p>${book.pages} pages</p>
             <p>Have I read it: ${translateBool(book.read)}</p>`;
 
         container.appendChild(card);

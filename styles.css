@@ -25,6 +25,7 @@ body {
 .card {
     border: solid black 1px;
     display: grid;
+    gap: 1rem;
     height: auto;
     padding: 1rem;
 }
