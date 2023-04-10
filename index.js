@@ -2,11 +2,29 @@ const myLibrary = [];
 let displayBooks = function () {};
 
 // Constructor for books
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    addBookToLibrary() {
+        if (bookExists(this.title)) {
+            alert("This book is already in the library!");
+            return;
+        }
+
+        const newBook = new Book(
+            this.title,
+            this.author,
+            this.pages,
+            this.read
+        );
+
+        myLibrary.push(newBook);
+    }
 }
 
 function bookExists(newTitle) {
@@ -23,16 +41,6 @@ function bookExists(newTitle) {
 }
 
 // Creates book object and adds to array if unique
-function addBookToLibrary(title, author, pages, read) {
-    if (bookExists(title)) {
-        alert("This book is already in the library!");
-        return;
-    }
-
-    const newBook = new Book(title, author, pages, read);
-
-    myLibrary.push(newBook);
-}
 
 function clearDisplay() {
     document.querySelector(".container").innerHTML = "";
@@ -143,7 +151,9 @@ function submitForm(event) {
     const pages = getFormValue("pages");
     const isRead = getFormValue("isRead");
 
-    addBookToLibrary(title, author, pages, isRead);
+    const newBook = new Book(title, author, pages, isRead);
+    newBook.addBookToLibrary();
+    console.log(myLibrary);
     displayBooks(myLibrary);
 
     clearForm();
